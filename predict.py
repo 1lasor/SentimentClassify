@@ -1,6 +1,7 @@
 import re
 import random
-from text_enhance import enhance_text,correct_text
+from web_request import spider
+#from text_enhance import enhance_text,correct_text
 import pandas as pd
 from sklearn.svm import NuSVC
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
@@ -44,8 +45,10 @@ i=0
 def enhance(text):
     global i
     i+=1
-    enhance_text(text)
     print(i)
+    request = "你是自然语言处理大师，请对下面的英文进行文本增强，只输出增强后的结果。"
+    return spider(text+request)
+
 
 #随机选择应用文本增强，可控时间
 train_random_rows = train_data.sample(frac=frac, random_state=1)
